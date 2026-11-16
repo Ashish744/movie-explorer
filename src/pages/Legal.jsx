@@ -1,0 +1,8 @@
+import {useEffect} from 'react';import {useParams,Link} from 'react-router-dom';import {AnimText} from '../components/Anim';
+const docs={
+terms:['Terms of Service',['Acceptance','By using Movie Explorer you agree to these terms. If you do not agree, please stop using the site.'],['Use of the site','This demo lets you browse, search and save movies. Do not misuse, copy or disrupt the service.'],['Content','Movie data is fictional and images are placeholders from Unsplash, used for demonstration.'],['Changes','We may update these terms at any time. Continued use means you accept the updated terms.']],
+privacy:['Privacy Policy',['What we store','Your favourite movies are stored only in your browser using LocalStorage. Nothing is sent to a server.'],['What we collect','We do not collect personal data, accounts or payment details in this demo.'],['Your control','Clear your browser storage at any time to remove your saved favourites.'],['Contact','Questions? Email hello@stackly.com.']],
+cookies:['Cookie Policy',['Cookies','Movie Explorer does not set tracking cookies.'],['LocalStorage','We use LocalStorage to remember your favourites between visits. It stays on your device.'],['Third parties','Images load from Unsplash, which may apply its own policies.']]};
+export default function Legal(){const {doc}=useParams();const d=docs[doc]||docs.terms;useEffect(()=>scrollTo(0,0),[doc]);
+return <section className="wrap sec page legal"><AnimText as="h1" mode="words" text={d[0]}/><p className="subt">Last updated: 16 November 2026</p>
+{d.slice(1).map(([h,p])=><div key={h} className="lg"><h3>{h}</h3><p>{p}</p></div>)}<Link className="btn" to="/">← Back to Home</Link></section>}
